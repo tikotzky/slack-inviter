@@ -1,7 +1,39 @@
 import request from 'superagent';
 
-export default function invite({ org, token, email, channel }, fn){
+export function lookupUser({ org, token, user_id }, fn) {
+
+  const data = { user: user_id, token };
+
+  request
+  .post(`https://${org}.slack.com/api/users.info`)
+  .type('form')
+  .send(data)
+  .end(function(err, res){
+    if (err) { return fn(err); }
+    if (200 != res.status) {
+      fn(new Error(`Invalid response ${res.status}.`));
+      return;
+    }
+    console.log(`https://${org}.slack.com/api/users.info`, res.body);
+
+    const { ok, error: providedError, user } = res.body;
+
+    if (!ok) {
+      fn(new Error(providedError));
+    }
+
+    fn(null, user);
+
+  })
+
+}
+
+export function invite({ org, token, email, channel, message }, fn) {
   let data = { email, token };
+
+  if (message) {
+    data.extra_message = message;
+  }
 
   if (channel) {
     data.channels = channel;
@@ -14,7 +46,7 @@ export default function invite({ org, token, email, channel }, fn){
   .type('form')
   .send(data)
   .end(function(err, res){
-    if (err) return fn(err);
+    if (err) { return fn(err); }
     if (200 != res.status) {
       fn(new Error(`Invalid response ${res.status}.`));
       return;
