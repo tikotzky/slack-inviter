@@ -1,5 +1,5 @@
 
-# slackin
+# slack-inviter
 
 A little server that enables existing slack team members
 to invite new members to a Slack server via a slash command.
