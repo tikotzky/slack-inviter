@@ -1,7 +1,6 @@
 {
   "name": "slack-inviter",
   "description": "Let team members invite others to your Slack via slash command",
-  "logo": "https://i.imgur.com/odDO1Fx.png",
   "repository": "https://github.com/tikotzky/slack-inviter",
   "keywords": [
     "node",
