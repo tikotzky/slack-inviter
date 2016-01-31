@@ -4,6 +4,12 @@
 A little server that enables existing slack team members
 to invite new members to a Slack server via a slash command.
 
+For example once installed any user can run a slash command like
+```
+/invite_user foo@bar.command
+```
+to invite another user to the team.
+
 ## How to use
 
 ### Server
