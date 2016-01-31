@@ -1,0 +1,24 @@
+{
+  "name": "slack-inviter",
+  "description": "Let team members invite others to your Slack via slash command",
+  "logo": "https://i.imgur.com/odDO1Fx.png",
+  "repository": "https://github.com/tikotzky/slack-inviter",
+  "keywords": [
+    "node",
+    "slack"
+  ],
+  "env": {
+    "SLACK_SUBDOMAIN": {
+      "description": "Your Slack's subdomain (**this**.slack.com)",
+      "required": true
+    },
+    "SLACK_API_TOKEN": {
+      "description": "A Slack API token (find it on https://api.slack.com/web)",
+      "required": true
+    },
+    "SLACK_COMMAND_TOKEN": {
+      "description": "The token sent in the slash command payload (it's generated when you create the slash command)",
+      "required": false
+    }
+  }
+}
