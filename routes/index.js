@@ -12,24 +12,11 @@ router.post('/', async (req, res) => {
   const email = req.body.text;
   const user_id = req.body.user_id;
 
-  if (cmdToken !== req.body.token) {
-    return res
-      .status(400)
-      .end('Invalid Token')
-  }
-
-  if (!email) {
-    return res
-      .status(400)
-      .end('No email provided');
-  }
-
-  if (!remail().test(email)) {
-    return res
-      .status(400)
-      .end('Invalid email');
-  }
   try {
+    
+    validateToken(req.body.token);
+    validateEmail(email);
+
     const user = await lookupUser({ org, token, user_id });
     
     const message = generateInviteMessage(user);
@@ -39,12 +26,31 @@ router.post('/', async (req, res) => {
     return res
       .status(200)
       .end(`WOOT. "${email}" should receive an invite shortly!`);
+
   } catch (err) {
+
     return res
       .status(400)
       .end(err.message);
+      
   }
 });
+
+function validateToken(token) {
+  if (cmdToken !== token) {
+    throw new Error('Invalid Token');
+  }
+}
+
+function validateEmail(email) {
+  if (!email) {
+    throw new Error('No email provided');
+  }
+
+  if (!remail().test(email)) {
+    throw new Error('Invalid email');
+  }
+}
 
 function generateInviteMessage(user) {
   const userName = user.real_name || `@${user.name}`;
