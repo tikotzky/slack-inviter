@@ -1,3 +1,4 @@
+// This file is adapted from https://github.com/rauchg/slackin/blob/master/lib/slack-invite.js
 import request from 'request-promise';
 
 export function lookupUser({ org, token, user_id }) {
