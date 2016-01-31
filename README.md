@@ -6,7 +6,7 @@ to invite new members to a Slack server via a slash command.
 
 For example once installed any user can run a slash command like
 ```
-/invite_user foo@bar.command
+/invite_user foo@bar.com
 ```
 to invite another user to the team.
 
