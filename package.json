@@ -4,7 +4,7 @@
   "scripts": {
     "start": "node -r babel-register ./bin/www"
   },
-  "main": "routes/index.js",
+  "main": "routes/invite-command",
   "dependencies": {
     "babel-preset-es2015-node": "^5.0.2",
     "babel-preset-stage-2": "^6.3.13",

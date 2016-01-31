@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import remail from 'email-regex';
-import { invite, lookupUser } from '../slack-invite';
+import { invite, lookupUser } from './slack-invite';
 
 const org = process.argv[2] || process.env.SLACK_SUBDOMAIN;
 const token = process.argv[3] || process.env.SLACK_API_TOKEN;
