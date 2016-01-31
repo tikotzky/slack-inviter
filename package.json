@@ -1,7 +1,6 @@
 {
   "name": "slack-inviter",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node -r babel-register ./bin/www"
   },
