@@ -14,7 +14,6 @@ export function lookupUser({ org, token, user_id }, fn) {
       fn(new Error(`Invalid response ${res.status}.`));
       return;
     }
-    console.log(`https://${org}.slack.com/api/users.info`, res.body);
 
     const { ok, error: providedError, user } = res.body;
 
