@@ -2,7 +2,6 @@
 import request from 'request-promise';
 
 export function lookupUser({ org, token, user_id }) {
-
   const form = { user: user_id, token };
 
   return request
@@ -19,7 +18,7 @@ export function lookupUser({ org, token, user_id }) {
 }
 
 export function invite({ org, token, email, channel, message }) {
-  let form = { email, token };
+  const form = { email, token };
 
   if (message) {
     form.extra_message = message;
@@ -38,10 +37,10 @@ export function invite({ org, token, email, channel, message }) {
       // return `200 OK`, and provide other information in the body. So we
       // need to check for the correct account scope and call the callback
       // with an error if it's not high enough.
-      let {ok, error, needed} = res;
+      const { ok, error, needed } = res;
       if (!ok) {
         if (error === 'missing_scope' && needed === 'admin') {
-          throw new Error(`Missing admin scope: The token you provided is for an account that is not an admin. You must provide a token from an admin account in order to invite users through the Slack API.`);
+          throw new Error(`Missing admin scope: The token you provided is for an account that is not an admin. You must provide a token from an admin account in order to invite users through the Slack API.`); // eslint-disable-line max-len
         } else if (error === 'already_invited') {
           throw new Error(`"${email}" already has a pending invite to this team.`);
         } else if (error === 'already_in_team') {
