@@ -20,9 +20,9 @@ export function lookupUser({ org, token, user_id }) {
 export function invite({ org, token, email, channel, message }) {
   const form = { email, token };
 
-  if (message) {
-    form.extra_message = message;
-  }
+  // if (message) {
+  //   form.extra_message = message;
+  // }
 
   if (channel) {
     form.channels = channel;
